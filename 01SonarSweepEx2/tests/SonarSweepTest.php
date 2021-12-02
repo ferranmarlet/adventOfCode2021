@@ -18,5 +18,14 @@ class SonarSweepTest extends TestCase
 
         self::assertEquals(0, $sut->countIncreasingDepthVariations());
     }
+
+    /** @test */
+    public function shouldReturnZeroIfThereAre3Measurements(): void
+    {
+        $sut = new SonarSweep();
+        $sut->measurements = [1, 2, 3];
+
+        self::assertEquals(0, $sut->countIncreasingDepthVariations());
+    }
 }
 
