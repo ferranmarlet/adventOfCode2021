@@ -12,7 +12,7 @@ class SonarSweep
 
     public function countIncreasingDepthVariations(): int
     {
-        if (!isset($this->measurements)) {
+        if (!is_array($this->measurements)) {
             throw new Exception('Measurements list not provided');
         }
 
