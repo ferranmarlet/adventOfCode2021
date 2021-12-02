@@ -4,13 +4,26 @@ declare(strict_types=1);
 
 namespace AdventOfCode\SonarSweep;
 
+use Exception;
+
 class SonarSweep
 {
     public $measurements;
 
     public function countIncreasingDepthVariations(): int
     {
-        return 0;
+        if (!isset($this->measurements)) {
+            throw new Exception('Measurements list not provided');
+        }
+
+        $totalIncreasingMeasurements = 0;
+        for ($i = 1; $i <count($this->measurements); $i++) {
+            if ($this->measurements[$i] > $this->measurements[$i-1]) {
+                $totalIncreasingMeasurements++;
+            }
+        }
+
+        return $totalIncreasingMeasurements;
     }
 }
 
