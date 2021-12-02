@@ -27,5 +27,14 @@ class SonarSweepTest extends TestCase
 
         self::assertEquals(0, $sut->countIncreasingDepthVariations());
     }
+
+    /** @test */
+    public function shouldReturnOneWhenThereIsOnlyOneIncreasingGroupOfMeasurements(): void
+    {
+        $sut = new SonarSweep();
+        $sut->measurements = [1, 1, 1, 2];
+
+        self::assertEquals(1, $sut->countIncreasingDepthVariations());
+    }
 }
 
