@@ -17,8 +17,17 @@ class PowerConsumptionCalculatorTest extends TestCase
     public function shouldReturnZeroWhenAllBitsAreZeroes(): void
     {
         $diagnosticReport = [
-            '00000',
-            '00000',
+            '0'
+        ];
+        $sut = new PowerConsumptionCalculator($diagnosticReport);
+        self::assertEquals(0, $sut->getPowerConsumption());
+    }
+
+    /** @test */
+    public function shouldReturnZeroWhenAllBitsAreOne(): void
+    {
+        $diagnosticReport = [
+            '1',
         ];
         $sut = new PowerConsumptionCalculator($diagnosticReport);
         self::assertEquals(0, $sut->getPowerConsumption());
