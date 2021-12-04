@@ -44,4 +44,16 @@ class SubmarineTest extends TestCase
         $sut = new Submarine($commandList);
         self::assertEquals(0, $sut->getTotalMovement());
     }
+
+    /** @test */
+    public function shouldReturnMultiplicationOfDepthAndForwardDistance(): void
+    {
+        $commandList = [
+            new Command(Command::DOWN, 2),
+            new Command(Command::FORWARD, 2)
+        ];
+
+        $sut = new Submarine($commandList);
+        self::assertEquals(4, $sut->getTotalMovement());
+    }
 }
