@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Day02DiveEx1;
 
+use AdventOfCode\Day02DiveEx1\ValueObjects\Command;
+
 class Submarine
 {
-    private $commandList;
+    private array $commandList;
 
-    public function __construct($commandList) {
+    public function __construct(array $commandList) {
         $this->commandList = $commandList;
     }
 
