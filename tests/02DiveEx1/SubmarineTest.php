@@ -32,4 +32,16 @@ class SubmarineTest extends TestCase
         $sut = new Submarine($commandList);
         self::assertEquals(0, $sut->getTotalMovement());
     }
+
+    /** @test */
+    public function shouldReturnZeroWhenTotalForwardDistanceIsZero(): void
+    {
+        $commandList = [
+            new Command(Command::DOWN, 1),
+            new Command(Command::UP, 1)
+        ];
+
+        $sut = new Submarine($commandList);
+        self::assertEquals(0, $sut->getTotalMovement());
+    }
 }
