@@ -37,9 +37,9 @@ class PowerConsumptionCalculatorTest extends TestCase
     public function shouldReturnPowerConsumptionForTwoBitRecords(): void
     {
         $diagnosticReport = [
-            '00',
-            '01',
-            '01'
+            '00 ',
+            '01 ',
+            '01 '
         ];
         // Counting the most common bit on each column gives the following gamma rate
         $gammaRate = '01';
