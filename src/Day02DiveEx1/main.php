@@ -6,12 +6,15 @@ namespace AdventOfCode\DiveEx1;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use AdventOfCode\DiveEx1\Submarine;
+use AdventOfCode\Day02DiveEx1\ValueObjects\Command;
+use AdventOfCode\Day02DiveEx1\Submarine;
 
-$inputMeasurements = file(__DIR__ . '/../depth_variations.csv');
+$inputLines = file(__DIR__ . '/commands.csv');
 
-$sonarSweep = new SonarSweep();
+$commandList = array_map(function ($inputLine) {
+    return Command::fromInputString($inputLine);
+}, $inputLines);
 
-$sonarSweep->measurements = $inputMeasurements;
+$submarine = new Submarine($commandList);
 
-echo $sonarSweep->countIncreasingDepthVariations();
+echo $submarine->getTotalMovement();
