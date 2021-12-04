@@ -18,6 +18,12 @@ class Command
         $this->lenght = $lenght;
     }
 
+    public static function fromInputString($inputLine): self
+    {
+        $lineValues = explode(' ', $inputLine);
+        return new Command($lineValues[0], (int)$lineValues[1]);
+    }
+
     public function direction(): string
     {
         return $this->direction;
