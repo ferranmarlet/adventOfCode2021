@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AdventOfCode\SonarSweep;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
-use AdventOfCode\SonarSweep\SonarSweep;
+use AdventOfCode\Day01SonarSweepEx1\SonarSweep;
 
 $inputMeasurements = file(__DIR__ . '/../depth_variations.csv');
 

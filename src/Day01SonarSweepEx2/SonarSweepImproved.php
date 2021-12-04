@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\SonarSweep;
+namespace AdventOfCode\Day01SonarSweepEx2;
 
 use Exception;
 
-class SonarSweep
+class SonarSweepImproved
 {
     public $measurements;
 

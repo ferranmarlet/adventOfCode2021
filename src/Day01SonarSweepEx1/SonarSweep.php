@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AdventOfCode\SonarSweep;
+namespace AdventOfCode\Day01SonarSweepEx1;
 
 use Exception;
 

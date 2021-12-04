@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use AdventOfCode\SonarSweep\SonarSweep;
+use AdventOfCode\Day01SonarSweepEx1\SonarSweep;
 use PHPUnit\Framework\TestCase;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 class SonarSweepTest extends TestCase
 {
