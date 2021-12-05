@@ -6,6 +6,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use AdventOfCode\Day04GiantSquidEx1\BingoCheatCalculator;
+use AdventOfCode\Day04GiantSquidEx1\Board;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -16,7 +17,7 @@ class BingoCheatCalculatorTest extends TestCase
     {
         $numbersDrawn = ['1'];
         $boards = [
-            0 => ['1']
+            Board::fromString('1')
         ];
         $sut = new BingoCheatCalculator($numbersDrawn, $boards);
         self::assertEquals(0, $sut->cheat());
@@ -27,7 +28,7 @@ class BingoCheatCalculatorTest extends TestCase
     {
         $numbersDrawn = ['2'];
         $boards = [
-            0 => ['1', '2']
+            Board::fromString('12')
         ];
         $sut = new BingoCheatCalculator($numbersDrawn, $boards);
         self::assertEquals(2, $sut->cheat());

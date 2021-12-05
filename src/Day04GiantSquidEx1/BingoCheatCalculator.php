@@ -7,7 +7,8 @@ namespace AdventOfCode\Day04GiantSquidEx1;
 class BingoCheatCalculator
 {
     private array $drawnNumbers;
-    private array $boards;
+    /** @var Board[] $boards */
+    public array $boards;
 
     public function __construct(array $drawnNumbers, array $boards)
     {
@@ -17,6 +18,22 @@ class BingoCheatCalculator
 
     public function cheat(): int
     {
+        $i = 0;
+        $isBingo = false;
+        while ($i < count($this->drawnNumbers) && !$isBingo) {
+            foreach ($this->boards as $board) {
+                $board->mark($this->drawnNumbers[$i]);
+                if ($board->isBingo()) {
+                    $isBingo = true;
+                    return $this->drawnNumbers[$i] * $board->getRemainingNumbersSum();
+                }
+            }
+            $i++;
+        }
         return 0;
+    }
+
+    public function playTurn(string $drawnNumber, array $board): void
+    {
     }
 }
