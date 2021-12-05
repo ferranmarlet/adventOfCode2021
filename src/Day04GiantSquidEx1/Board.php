@@ -13,6 +13,23 @@ class Board
         $this->cellValues = $cellValues;
     }
 
+    public static function fromString($stringValues): self
+    {
+        $cellValues = [];
+        $rows = explode("\r", $stringValues);
+
+        $x = 0;
+        while ($x < count($rows)) {
+            $y = 0;
+            while ($y < strlen($rows[$x])) {
+                $cellValues[$x][$y] = substr($rows[$x], $y, 1); 
+                $y++;
+            }
+            $x++;
+        }
+        return new Board($cellValues);
+    }
+
     public function mark(string $number): void
     {
         array_walk_recursive(
@@ -29,8 +46,9 @@ class Board
     {
         $isBingo = false;
         $i = 0;
-        while (!$isBingo && $i <= count($this->cellValues)) {
+        while (!$isBingo && $i < count($this->cellValues)) {
             $isBingo = $this->checkLineForBingo($this->cellValues[$i]);
+            $i++;
         }
 
         return $isBingo;

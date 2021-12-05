@@ -21,4 +21,15 @@ class BingoCheatCalculatorTest extends TestCase
         $sut = new BingoCheatCalculator($numbersDrawn, $boards);
         self::assertEquals(0, $sut->cheat());
     }
+
+    /** @test */
+    public function shouldReturnSumOfUnmarkedNumberPerLastDrawnNumberOnTwoCellBoard(): void
+    {
+        $numbersDrawn = ['2'];
+        $boards = [
+            0 => ['1', '2']
+        ];
+        $sut = new BingoCheatCalculator($numbersDrawn, $boards);
+        self::assertEquals(2, $sut->cheat());
+    }
 }
