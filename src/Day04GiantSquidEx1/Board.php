@@ -44,17 +44,22 @@ class Board
 
     public function isBingo(): bool
     {
+        return $this->checkLinesForBingo() || $this->checkColumnsForBingo();
+    }
+
+    private function checkLinesForBingo(): bool
+    {
         $isBingo = false;
         $i = 0;
         while (!$isBingo && $i < count($this->cellValues)) {
-            $isBingo = $this->checkLineForBingo($this->cellValues[$i]);
+            $isBingo = $this->checkSingleLineForBingo($this->cellValues[$i]);
             $i++;
         }
 
         return $isBingo;
     }
 
-    private function checkLineForBingo(array $line): bool
+    private function checkSingleLineForBingo(array $line): bool
     {
         $isBingo = true;
         array_walk(
@@ -65,6 +70,19 @@ class Board
                 }
             }
         );
+        return $isBingo;
+    }
+
+    private function checkColumnsForBingo(): bool
+    {
+        $isBingo = false;
+        $transposedCellValues = BoardTransposer::transpose($this->cellValues);
+        $i = 0;
+        while (!$isBingo && $i < count($transposedCellValues)) {
+            $isBingo = $this->checkSingleLineForBingo($transposedCellValues[$i]);
+            $i++;
+        }
+
         return $isBingo;
     }
 }

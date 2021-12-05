@@ -40,4 +40,16 @@ class BoardTest extends TestCase
 
         self::assertTrue($sut->isBingo());
     }
+
+    /** @test */
+    public function shouldCallBingoWhenAllCellsInAColumnAreMarked(): void
+    {
+        $sut = Board::fromString(
+            "12\r".
+            "34");
+        $sut->mark('1');
+        $sut->mark('3');
+
+        self::assertTrue($sut->isBingo());
+    }
 }
