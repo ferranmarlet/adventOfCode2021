@@ -47,6 +47,20 @@ class Board
         return $this->checkLinesForBingo() || $this->checkColumnsForBingo();
     }
 
+    public function getRemainingNumbersSum(): int
+    {
+        $sum = 0;
+        array_walk_recursive(
+            $this->cellValues,
+            function($cell) use (&$sum) {
+                if ($cell !== 'x') {
+                    $sum += (int)$cell;
+                }
+            }
+        );
+        return $sum;
+    }
+
     private function checkLinesForBingo(): bool
     {
         $isBingo = false;
