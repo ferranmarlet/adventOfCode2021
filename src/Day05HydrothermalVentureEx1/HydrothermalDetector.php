@@ -15,6 +15,16 @@ class HydrothermalDetector
 
     public function getDangerousSpotCount(): int
     {
-        return 0;
+        $dangerousSpotCount = 0;
+        array_walk_recursive(
+            $this->map,
+            function ($cell) use (&$dangerousSpotCount) {
+                if ((int)$cell > 1) {
+                    $dangerousSpotCount++;
+                }
+            }
+        );
+
+        return $dangerousSpotCount;
     }
 }

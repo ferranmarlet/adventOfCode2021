@@ -30,4 +30,16 @@ class HydrothermalDetectorTest extends TestCase
         $sut = new HydrothermalDetector($map);
         self::assertEquals(0, $sut->getDangerousSpotCount());
     }
+
+    /** @test */
+    public function shouldDetectOneDangerousSpot(): void
+    {
+        $map = [
+            0 => [
+                0 => '2'
+            ]
+        ];
+        $sut = new HydrothermalDetector($map);
+        self::assertEquals(1, $sut->getDangerousSpotCount());
+    }
 }
