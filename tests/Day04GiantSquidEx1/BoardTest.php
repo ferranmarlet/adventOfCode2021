@@ -23,8 +23,8 @@ class BoardTest extends TestCase
     public function shouldNotCallBingoWhenNoCellsAreMarked(): void
     {
         $sut = Board::fromString(
-            "12\r".
-            "34");
+            "1 2\n".
+            "3 4");
 
         self::assertFalse($sut->isBingo());
     }
@@ -33,8 +33,8 @@ class BoardTest extends TestCase
     public function shouldCallBingoWhenAllCellsInARowAreMarked(): void
     {
         $sut = Board::fromString(
-            "12\r".
-            "34");
+            "1 2\n".
+            "3 4");
         $sut->mark('1');
         $sut->mark('2');
 
@@ -45,8 +45,8 @@ class BoardTest extends TestCase
     public function shouldCallBingoWhenAllCellsInAColumnAreMarked(): void
     {
         $sut = Board::fromString(
-            "12\r".
-            "34");
+            "1 2\n".
+            "3 4");
         $sut->mark('1');
         $sut->mark('3');
 

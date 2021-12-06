@@ -28,7 +28,7 @@ class BingoCheatCalculatorTest extends TestCase
     {
         $numbersDrawn = ['2'];
         $boards = [
-            Board::fromString('12')
+            Board::fromString('1 2')
         ];
         $sut = new BingoCheatCalculator($numbersDrawn, $boards);
         self::assertEquals(2, $sut->cheat());

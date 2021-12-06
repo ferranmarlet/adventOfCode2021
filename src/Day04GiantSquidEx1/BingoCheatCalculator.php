@@ -21,7 +21,7 @@ class BingoCheatCalculator
         $i = 0;
         $isBingo = false;
         while ($i < count($this->drawnNumbers) && !$isBingo) {
-            foreach ($this->boards as $board) {
+            foreach ($this->boards as &$board) {
                 $board->mark($this->drawnNumbers[$i]);
                 if ($board->isBingo()) {
                     $isBingo = true;
@@ -31,9 +31,5 @@ class BingoCheatCalculator
             $i++;
         }
         return 0;
-    }
-
-    public function playTurn(string $drawnNumber, array $board): void
-    {
     }
 }

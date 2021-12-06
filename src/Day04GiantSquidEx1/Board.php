@@ -16,14 +16,13 @@ class Board
     public static function fromString($stringValues): self
     {
         $cellValues = [];
-        $rows = explode("\r", $stringValues);
+        $stringValues = str_replace('  ', ' ', $stringValues);
+        $rows = explode("\n", $stringValues);
 
         $x = 0;
         while ($x < count($rows)) {
-            $y = 0;
-            while ($y < strlen($rows[$x])) {
-                $cellValues[$x][$y] = substr($rows[$x], $y, 1); 
-                $y++;
+            if ($rows[$x] != '') {
+                $cellValues[$x] = explode(' ', trim($rows[$x]));
             }
             $x++;
         }
