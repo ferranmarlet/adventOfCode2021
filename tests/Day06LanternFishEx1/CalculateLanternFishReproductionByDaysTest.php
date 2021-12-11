@@ -41,4 +41,14 @@ class CalculateLanternFishReproductionByDaysTest extends TestCase
         $resultingFishAmount = $sut->execute($reproductionDays);
         self::assertEquals(2, $resultingFishAmount);
     }
+
+    /** @test */
+    public function shouldReturnTotalFishAmountAfterReproductionDays(): void
+    {
+        $initialSchool = [3,4,3,1,2];
+        $reproductionDays = 80;
+        $sut = new CalculateLanternFishReproductionByDays($initialSchool);
+        $resultingFishAmount = $sut->execute($reproductionDays);
+        self::assertEquals(5934, $resultingFishAmount);
+    }
 }
