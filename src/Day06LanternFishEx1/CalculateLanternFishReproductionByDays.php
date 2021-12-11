@@ -16,13 +16,7 @@ class CalculateLanternFishReproductionByDays
     public function execute(int $days): int
     {
         for ($day = 0; $day < $days; $day++) {
-            // One day passes
-            for ($i = 0; $i <= 8; $i++) {
-                $this->fishByRemainingDaysToReproduce[$i-1] = $this->fishByRemainingDaysToReproduce[$i] ?? 0;
-            }
-            $this->fishByRemainingDaysToReproduce[8] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
-            $this->fishByRemainingDaysToReproduce[6] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
-            $this->fishByRemainingDaysToReproduce[-1] = 0;
+            $this->advanceOneDayToReproduction();
         }
         return array_sum($this->fishByRemainingDaysToReproduce);
     }
@@ -38,5 +32,15 @@ class CalculateLanternFishReproductionByDays
                 $this->fishByRemainingDaysToReproduce[$daysToReproduce]++;
             }
         }
+    }
+
+    private function advanceOneDayToReproduction(): void
+    {
+        for ($i = 0; $i <= 8; $i++) {
+            $this->fishByRemainingDaysToReproduce[$i-1] = $this->fishByRemainingDaysToReproduce[$i] ?? 0;
+        }
+        $this->fishByRemainingDaysToReproduce[8] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
+        $this->fishByRemainingDaysToReproduce[6] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
+        $this->fishByRemainingDaysToReproduce[-1] = 0;
     }
 }
