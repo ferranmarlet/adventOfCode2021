@@ -15,6 +15,6 @@ class CalculateLanternFishReproductionByDays
 
     public function execute(int $days): int
     {
-        return 0;
+        return count($this->initialSchool);
     }
 }
