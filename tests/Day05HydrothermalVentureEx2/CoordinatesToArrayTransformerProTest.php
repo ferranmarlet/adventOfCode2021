@@ -24,6 +24,31 @@ class CoordinatesToArrayTransformerProTest extends TestCase
     }
 
     /** @test */
+    public function shouldOverlapHorizontalAndVerticalVents(): void
+    {
+        $coordinateStrings = [
+            '0,0 -> 9,0',
+            '5,0 -> 5,2'
+        ];
+
+        $ventArray = CoordinatesToArrayTransformerPro::transform($coordinateStrings);
+        self::assertEquals(2, $ventArray[5][0]);
+    }
+
+    /** @test */
+    public function shouldOverlapDiagonalVents(): void
+    {
+        // These two lines form a cross with its center on cell 4,4
+        $coordinateStrings = [
+            '0,0 -> 9,9',
+            '3,5 -> 5,3'
+        ];
+
+        $ventArray = CoordinatesToArrayTransformerPro::transform($coordinateStrings);
+        self::assertEquals(2, $ventArray[4][4]);
+    }
+
+    /** @test */
     public function shouldOverlapVentsOnArray(): void
     {
         $coordinateStrings = [
