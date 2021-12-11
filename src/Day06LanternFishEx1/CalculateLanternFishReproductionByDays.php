@@ -39,8 +39,18 @@ class CalculateLanternFishReproductionByDays
         for ($i = 0; $i <= 8; $i++) {
             $this->fishByRemainingDaysToReproduce[$i-1] = $this->fishByRemainingDaysToReproduce[$i] ?? 0;
         }
-        $this->fishByRemainingDaysToReproduce[8] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
-        $this->fishByRemainingDaysToReproduce[6] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
+        $this->addNewbornFishToSchool($this->fishByRemainingDaysToReproduce[-1] ?? 0);
+        $this->restartAdultFishReproductionCycle($this->fishByRemainingDaysToReproduce[-1] ?? 0);
         $this->fishByRemainingDaysToReproduce[-1] = 0;
+    }
+
+    private function addNewbornFishToSchool(int $newFishAmount): void
+    {
+        $this->fishByRemainingDaysToReproduce[8] = $newFishAmount;
+    }
+
+    private function restartAdultFishReproductionCycle(int $fishAmount): void
+    {
+        $this->fishByRemainingDaysToReproduce[6] = $fishAmount;
     }
 }
