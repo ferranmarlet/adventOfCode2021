@@ -45,7 +45,7 @@ class HydrothermalDetectorProTest extends TestCase
     }
 
     /** @test */
-    public function shouldDetectMultipledangerousSpotsOnVerticalAndHorizontalLinesOnly(): void
+    public function shouldDetectMultipledangerousSpotsOnVerticalHorizontalAndDiagonalLines(): void
     {
         $coordinateStrings = [
             '0,9 -> 5,9',
@@ -61,6 +61,6 @@ class HydrothermalDetectorProTest extends TestCase
         ];
         $map = CoordinatesToArrayTransformerPro::transform($coordinateStrings);
         $sut = new HydrothermalDetectorPro($map);
-        self::assertEquals(5, $sut->getDangerousSpotCount());
+        self::assertEquals(12, $sut->getDangerousSpotCount());
     }
 }

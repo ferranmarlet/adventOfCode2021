@@ -21,6 +21,9 @@ class CoordinatesToArrayTransformerPro
     {
         if (self::lineIsStraight($coordinates)) {
             $ventMap = self::drawStraightLineOnCoordinates($coordinates, $ventMap);
+        } elseif (self::lineIsDiagonal($coordinates)) {
+            $ventMap = self::drawDiagonalLineOnCoordinates($coordinates, $ventMap);
+
         }
         return $ventMap;
     }
@@ -28,6 +31,34 @@ class CoordinatesToArrayTransformerPro
     private static function lineIsStraight(array $coordinates): bool
     {
         return $coordinates['x1'] == $coordinates['x2'] || $coordinates['y1'] == $coordinates['y2'];
+    }
+
+    private static function lineIsDiagonal(array $coordinates): bool
+    {
+        // To know if a line is a diagonal (inclined 45 degrees)
+        // we add substract starting and ending position coordinates,
+        // if the result satisfies abs|x| = abs|y|, then it's diagonal
+        return (abs($coordinates['x1'] - $coordinates['x2'])
+            == abs($coordinates['y1'] - $coordinates['y2']));
+    }
+
+    private static function drawDiagonalLineOnCoordinates(array $coordinates, array $ventMap): array
+    {
+        $xStep = ($coordinates['x2'] - $coordinates['x1']) <=> 0;
+        $yStep = ($coordinates['y2'] - $coordinates['y1']) <=> 0;
+
+        //var_dump( "x1 = ".$coordinates['x1'].", x2 = ".$coordinates['x2'].", xstep = $xStep \r");
+        //var_dump( "y1 = ".$coordinates['y1'].", y2 = ".$coordinates['y2'].", ystep = $yStep \r");
+
+        $x = $coordinates['x1'];
+        $y = $coordinates['y1'];
+        while ($x != ($coordinates['x2']+$xStep) && $y != ($coordinates['y2']+$yStep)) {
+            $ventMap[$x][$y] = isset($ventMap[$x][$y]) ? $ventMap[$x][$y]+1 : 1;
+            $x += $xStep;
+            $y += $yStep;
+        }
+
+        return $ventMap;
     }
 
     private static function drawStraightLineOnCoordinates(array $coordinates, array $ventMap): array

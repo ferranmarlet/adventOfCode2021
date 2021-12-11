@@ -41,7 +41,8 @@ class CoordinatesToArrayTransformerProTest extends TestCase
         // These two lines form a cross with its center on cell 4,4
         $coordinateStrings = [
             '0,0 -> 9,9',
-            '3,5 -> 5,3'
+            '3,5 -> 5,3',
+            '5,3 -> 6,2' // Edge case, the two vents overlap on the begining/ending coordinates
         ];
 
         $ventArray = CoordinatesToArrayTransformerPro::transform($coordinateStrings);
