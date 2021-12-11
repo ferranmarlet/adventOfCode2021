@@ -18,7 +18,6 @@ class CalculateLanternFishReproductionByDays
         for ($day = 0; $day < $days; $day++) {
             $this->advanceOneDayToReproduction();
         }
-        echo $days;
         return array_sum($this->fishByRemainingDaysToReproduce);
     }
 
