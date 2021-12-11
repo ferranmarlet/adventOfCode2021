@@ -6,34 +6,37 @@ namespace AdventOfCode\Day06LanternFishEx1;
 
 class CalculateLanternFishReproductionByDays
 {
-    private array $initialSchool;
+    private array $fishByRemainingDaysToReproduce;
 
     public function __construct(array $initialSchool)
     {
-        $this->initialSchool = $initialSchool;
+        $this->distributeFishByRemainigDaysToReproduce($initialSchool);
     }
 
     public function execute(int $days): int
     {
-        $fishByReproductionDays = [];
-
-        foreach ($this->initialSchool as $fishDaysToReproduce) {
-            if (!isset($fishByReproductionDays[$fishDaysToReproduce])) {
-                $fishByReproductionDays[$fishDaysToReproduce] = 1;
-            } else {
-                $fishByReproductionDays[$fishDaysToReproduce]++;
-            }
-        }
-
         for ($day = 0; $day < $days; $day++) {
             // One day passes
             for ($i = 0; $i <= 8; $i++) {
-                $fishByReproductionDays[$i-1] = $fishByReproductionDays[$i] ?? 0;
+                $this->fishByRemainingDaysToReproduce[$i-1] = $this->fishByRemainingDaysToReproduce[$i] ?? 0;
             }
-            $fishByReproductionDays[8] = $fishByReproductionDays[-1] ?? 0;
-            $fishByReproductionDays[6] = $fishByReproductionDays[-1] ?? 0;
-            $fishByReproductionDays[-1] = 0;
+            $this->fishByRemainingDaysToReproduce[8] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
+            $this->fishByRemainingDaysToReproduce[6] = $this->fishByRemainingDaysToReproduce[-1] ?? 0;
+            $this->fishByRemainingDaysToReproduce[-1] = 0;
         }
-        return array_sum($fishByReproductionDays);
+        return array_sum($this->fishByRemainingDaysToReproduce);
+    }
+
+    private function distributeFishByRemainigDaysToReproduce($school): void
+    {
+        $this->fishByRemainingDaysToReproduce = [];
+
+        foreach ($school as $daysToReproduce) {
+            if (!isset($this->fishByRemainingDaysToReproduce[$daysToReproduce])) {
+                $this->fishByRemainingDaysToReproduce[$daysToReproduce] = 1;
+            } else {
+                $this->fishByRemainingDaysToReproduce[$daysToReproduce]++;
+            }
+        }
     }
 }
